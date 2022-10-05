@@ -1,0 +1,51 @@
+<div class="col-md-6 offset-md-3">
+    <h3> New  </h3>
+    <form (ngSubmit) = "onSubmit()">
+    
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class ="form-control" id = "firstName"
+                [(ngModel)] = "user.firstName" name = "firstName">
+        </div>
+    
+        <div class="form-group">
+            <label> Email Id</label>
+            <input type="text" class ="form-control" id = "emailId"
+                [(ngModel)] = "user.emailId" name = "emailId">
+        </div>
+
+        <div class="form-group">
+            <label> Date </label>
+            <input type="date" class ="form-control" id = "from"
+                [(ngModel)] = "user.from" name = "from">
+        </div>
+
+        <div class="form-group">
+            <label> Time </label><br>
+            <input type="radio" [(ngModel)] = "user.timing" value="Morning" name="timing" /> Morning
+            <input type="radio" [(ngModel)] = "user.timing" value="Evening" name="timing"/> Evening
+        </div><br>
+
+        <div class="form-group">
+            <label> Speciality</label><br>
+            <input type="radio" [(ngModel)] = "user.spec" value="Cardiologist" name="spec" />Cardiologist<br>
+            <input type="radio" [(ngModel)] = "user.spec" value="Neurologist" name="spec"/>Neurologist<br>
+            <input type="radio" [(ngModel)] = "user.spec" value="Surgeon" name="spec"/>Surgeon<br>
+        </div><br>
+
+        <div class="form-group">
+            <label> Consultants</label><br>
+            <input type="radio" [(ngModel)] = "user.consul" value="Dr. G.K. Reddy" name="consul" /> Dr. G.K. Reddy (Cardiologist) <br>
+            <input type="radio" [(ngModel)] = "user.consul" value="Dr. V.M. Rao" name="consul"/> Dr. V.M. Rao (Cardiologist)<br>
+            <input type="radio" [(ngModel)] = "user.consul" value="Dr. F. Benjimin" name="consul"/> Dr. F. Benjimin (Neurologist)<br>
+            <input type="radio" [(ngModel)] = "user.consul" value="Dr. Mohammed Hussain" name="consul"/> Dr. Mohammed Hussain (Neurologist)<br>
+            <input type="radio" [(ngModel)] = "user.consul" value="Dr. P. Johnson" name="consul"/> Dr. P. Johnson (Surgeon)<br>
+            <input type="radio" [(ngModel)] = "user.consul" value="Dr. M.S. Thamizhkumaran" name="consul"/> Dr. M.S. Thamizhkumaran (Surgeon)<br>
+            
+        </div><br>
+    
+        <button class = "btn btn-success" type ="submit">Submit</button>
+    
+    </form><br>
+    
+    </div> 
