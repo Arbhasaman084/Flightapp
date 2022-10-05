@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">Book Details</div>
+  <div class="card-body">
+    <div *ngIf="book">
+      <table class="table table-bordered">
+        <tr>
+          <td>Book Id: </td>
+          <td>{{book.bookId}}</td>
+        </tr>
+        <tr>
+          <td>Title: </td>
+          <td>{{book.title}}</td>
+        </tr>
+        <tr>
+          <td>Genre: </td>
+          <td>{{book.genre}}</td>
+        </tr>
+        <tr>
+          <td>Price: </td>
+          <td>{{book.price}}</td>
+        </tr>
+        <tr>
+          <td>Availabilty: </td>
+          <td>{{book.availability ? 'Available' : 'Not Available'}}</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <button class="btn btn-info" (click)="backToHome()">Home</button>
+    </div>
+  </div>
+</div>

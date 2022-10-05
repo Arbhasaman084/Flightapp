@@ -1,0 +1,107 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h1>List of Books</h1>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Genre</th>
+          <th>Availabilty</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let book of list" [ngSwitch]="book.availability"> -->
+          <!-- <td>{{id}}</td>
+          <td>{{title}}</td>
+          <td>{{genre}}</td>
+          <td>{{price | currency}}</td>
+          <td>{{status ? 'Available': 'Not Available'}}</td> -->
+          <!-- <td>{{book.id}}</td>
+          <td>{{book.title}}</td>
+          <td>{{book.genre}}</td>
+          <td>{{book.price | currency:"INR"}}</td>
+          <td>{{book.availability ? 'Available': 'Not Available'}}</td> -->
+
+          <!-- <span *ngSwitchCase="true" [ngStyle]="{'color':'darkgreen'}">
+            <td>{{book.id}}</td>
+          </span>
+          <span *ngSwitchCase="false" [ngStyle]="{'color':'red'}">
+            <td>{{book.id}}</td>
+          </span>
+
+          <span *ngSwitchCase="true" [ngStyle]="{'color':'darkgreen'}">
+            <td>{{book.title}}</td>
+          </span>
+          <span *ngSwitchCase="false" [ngStyle]="{'color':'red'}">
+            <td>{{book.title}}</td>
+          </span>
+
+          <span *ngSwitchCase="true" [ngStyle]="{'color':'darkgreen'}">
+            <td>{{book.genre}}</td>
+          </span>
+          <span *ngSwitchCase="false" [ngStyle]="{'color':'red'}">
+            <td>{{book.genre}}</td>
+          </span>
+
+          <span *ngSwitchCase="true" [ngStyle]="{'color':'darkgreen'}">
+            <td>{{book.price}}</td>
+          </span>
+          <span *ngSwitchCase="false" [ngStyle]="{'color':'red'}">
+            <td>{{book.price}}</td>
+          </span>
+
+          <span *ngSwitchCase="true" [ngStyle]="{'color':'darkgreen'}">
+            <td>{{book.availability ? 'Available': 'Not Available'}}</td>
+          </span>
+          <span *ngSwitchCase="false" [ngStyle]="{'color':'red'}">
+            <td>{{book.availability ? 'Available': 'Not Available'}}</td>
+          </span>
+          <span *ngSwitchCase="true">
+            <td>
+              <button style="margin-right: 12px;" class="btn btn-success" (click)="showAlert()">Borrow</button>
+              <button class="btn btn-warning" [disabled]="true">Return</button>
+            </td>
+          </span>
+          <span *ngSwitchCase="false">
+            <td>
+              <button style="margin-right: 12px;" class="btn btn-success" (click)="showAlert()" [disabled]="true">Borrow</button>
+              <button class="btn btn-warning">Return</button>
+            </td>
+          </span>
+        </tr> -->
+
+        <tr *ngFor="let book of booklist">
+           <!-- [ngSwitch]="book.availability"> -->
+          <td>{{book.title}}</td>
+          <td>{{book.genre}}</td>
+          <td>{{book.availability ? 'Available': 'Not Available'}}</td>
+          <!-- <span *ngSwitchCase="true"> -->
+            <td>
+              <button style="margin-right: 12px;" class="btn btn-success" (click)="borrowBook(book.bookId)">Borrow</button>
+              <!-- <button class="btn btn-warning" [disabled]="true">Return</button> -->
+              <button class="btn btn-primary" style="margin-left: 4%;" (click)="showBookDetails(book.bookId)">Details</button>
+            </td>
+          <!--</span>
+          <span *ngSwitchCase="false">
+            <td style="width: 73%;">
+              <button style="margin-right: 12px;" class="btn btn-success" (click)="borrowBook(book.bookId)" [disabled]="true">Borrow</button>
+              <button class="btn btn-primary" style="margin-left: 4%;" (click)="showBookDetails(book.bookId)">Details</button>
+            </td>
+          </span> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <button class="btn btn-info" (click)="backToDash()">Back to Dashboard</button>
+  </div>
+  <!-- <div>
+    <button class="btn btn-primary-outline" (click)="listAllBooks()">Show All Books</button>
+  </div> -->
+  <!-- <div>
+    Enter Title: <input [(ngModel)]="title" type="text" name="title"/>
+  </div> -->
+</div>

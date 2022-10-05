@@ -1,0 +1,22 @@
+<div class="card" style="width: 335px;">
+  <div class="card-body">
+    <div class="card-title">Enter Book Details </div>
+      <table>
+        <tr>
+          <td>Title: </td>
+          <td><input type="text" name="title" [(ngModel)]="title" class="form-control"></td>
+        </tr>
+        <tr>
+          <td>Genre: </td>
+          <td><input type="text" name="genre" [(ngModel)]="genre" class="form-control"></td>
+        </tr>
+        <tr>
+          <td>Price: </td>
+          <td><input type="number" name="price" [(ngModel)]="price" class="form-control"></td>
+        </tr>
+      </table>
+    <button class="btn btn-primary" style="margin-top: 10px;" (click)="addNewBook()">Save Book</button>
+    <button class="btn btn-danger" style="margin-top: 10px; margin-left: 2%;" (click)="backToHome()">Cancel</button>
+  </div>
+
+</div>
