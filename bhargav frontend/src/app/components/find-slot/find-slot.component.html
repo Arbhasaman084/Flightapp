@@ -1,0 +1,50 @@
+<div class="list_body">
+    <form #doctorform="ngForm" >
+
+        <label>Patient Name:</label>
+        <input type="text" name="patientname" ngModel #patientname="ngModel"><br />
+
+        <label>Appointment Date</label>
+        <input type="date" name="appointmentDate" ngModel #appointmentDate="ngModel" 
+        (change)="filterDoctors(doctorform)"> <br />
+
+        <label>session & slot: </label>
+        <select ngModel #session="ngModel" name="session" (change)="filterDoctors(doctorform)">&nbsp;
+        <option value="morning">morning</option>&nbsp;
+        <option value="evening">evening</option>&nbsp;
+        </select>
+
+        <select ngModel #slot="ngModel" name="slot" (change)="filterDoctors(doctorform)">&nbsp;
+        <option value="free">free</option>&nbsp;
+        <option value="booked">booked</option>
+        </select> <br />
+    </form>
+</div>
+<div class="list_body1">
+    <form #doctorlistform="ngForm" >
+        <label>speciality :</label>
+        <select ngModel #speciality="ngModel" name="speciality">
+            <option *ngFor="let d of specialityArr" value="{{d.speciality}}">{{d.speciality}}</option>
+        </select>
+
+        <label>consultants :</label>
+        <select ngModel #consultants="ngModel" name="consultants">
+            <option *ngFor="let d of doctorArr" value="{{d.consultants}}">{{d.consultants}}</option>
+        </select>
+
+        <button (click)="searchform(doctorlistform)">Search</button>
+
+    </form>
+</div> <br />
+<div > 
+    <ul>
+        <li *ngFor= "let s of searchlist">
+            {{s.consultants}}  {{s.speciality}}  {{s.timing}} 
+            <button 
+                (click)="enableDisableRule()" 
+                [ngClass]="{'green' : toggle, 'red': !toggle}">
+                {{status}}
+            </button>
+        </li>
+    </ul>
+</div>
