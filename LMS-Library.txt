@@ -1,0 +1,245 @@
+application-properties:
+=========================
+server.port=8976
+spring.datasource.url=jdbc:mysql://localhost:3306/mybootapp_80629?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=Password123
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+spring.jpa.hibernate.ddl-auto=update
+
+
+model.java:
+===========
+@Entity
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+front-end:
+==========
+nav-bar:
+========
+<HTML>
+------
+<div class="topnav">
+    <a class="active" routerLink="home">Home</a>
+    <a routerLink="issue-return">Return/Issue</a>
+    <a routerLink="add-book">Add Book</a>
+</div>
+-----
+<CSS>
+------
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+------------------
+<App.component.ts>
+------------------
+<app-nav-bar></app-nav-bar>
+<router-outlet></router-outlet>
+
+--> add the components in routing.
+-----------------------
+<app-routing.module.ts>
+-----------------------
+store in the array which looks like:
+const routes: Routes = []
+paste in square brackets:
+	{path: 'home', component: HomeComponent},
+  	{path: 'issue-return', component: IssueReturnComponent},
+  	{path: 'add-book', component: AddBookComponent},
+  	{path: '**', component: PageNotFoundComponent}
+===================
+Form
+===================
+<HTML>
+------
+<div class="form">
+    <form #addbookForm="ngForm" (submit)="onbooksubmit(addbookform)">
+      <h2>Add Book</h2>
+      <label>Name: </label>
+      <input type="text" name="name" ngModel #name="ngModel"><br /><br />
+      <label>genre: </label>
+      <input type="text" name="genre" ngModel #genre="ngModel"><br /><br />
+      <label>Status: </label>
+      <input type="text" name="status" ngModel #status="ngModel"><br /><br />
+      <label>Price: </label>
+      <input type="number" name="price" ngModel #price="ngModel"><br /><br />
+      <input type="submit" value="Add Book">
+    </form>
+</div>
+
+-----
+<CSS>
+-----
+form {
+  border: 3px solid grey;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 50px;
+  padding: 10px;
+}
+-----
+<ts>
+-----
+constructor(private libraryService:LibraryService,private router:Router) {}
+
+  ngOnInit(): void {
+  }
+  onbooksubmit(bookform:NgForm){
+    let book:Book = {
+      'name':bookform.value.name,
+      'genre':bookform.value.genre,
+      'status':true,
+      'price':bookform.value.price
+    }
+    this.libraryService.insertbook(book).subscribe();
+  }
+
+--> create a service folder,create a service.ts file and make a connection with API
+--> add HttpClientModule and NgForm in app.module.ts
+-->create methods to insert and get 
+---------------
+library_service
+---------------
+constructor(private http:HttpClient) { }
+
+  getallbooks():Observable<Book[]>{
+    return this.http.get<Book[]>("http://localhost:8959/book/getall");
+  }
+
+  insertbook(book:Book):Observable<any>{
+    return this.http.post<any>("http://localhost:8959/book/insert",book);
+  }
+==========
+table
+=========
+<HTML>
+------
+<div>
+    <table style="width:100%">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Genre</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let b of bookArr">
+          <td>{{b.id}}</td>
+          <td>{{b.name}}</td>
+          <td>{{b.genre}}</td>
+          <td>
+          <div *ngIf="b.status; else elseBlock">Yes</div>
+          <ng-template #elseBlock>No</ng-template>
+          </td>
+          <td><button (click)="alertbutton(b.id)">Request</button></td>
+        </tr>
+      </table>
+</div>
+--------
+<CSS>
+-------
+tr,th,td,table{
+    border: solid 1px black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Employee table
+	-id
+	-name
+	-project
+	-manager
+	-city
+	-phone
+	-gender
+	-covid +/-
+	-grade
+	-Status
+	-no of days
+important things:
+	-@Entity
+	-@Crossorigin(origins={})
+	-@Restcontoller
+	-POSTMapping-insert
+	-GETMapping-fetch
+	-PUTMapping-update
+	-DeleteMapping-delete
+	-@Query()
+	-@RequestBody
+	-@Requestpath
+
+pages:
+	-employee form
+	-status updation
+	-manager form(filtered)
+
+-----------------------------------------------------------------------------------------------
+-ng new project_name---for new project
+-code .---fro vs code
+-npm start
+-open package.json
+		-at start do: --port <portnumber>
+-tsconfig.json
+		-change strict: true to strict: false
+-create model folder(inside app folder)
+		-project.model.ts file
+-create service folder(inside app folder)
+		-using ng g s service/folder_name
+-create components folder(inside app folder)
+		-using ng g c component/file_name(multiple files)
+
+-add modules in app.modules.ts at imports add:
+		-HttpClientModule (import {HttpClientModule} from '@angular/common/http')
+		-FormsModule
+-go to service folder and inject HttpClient in the constructor
+		-constructor(private http:HttpClient) { }
+-connecting angular and API(postman) using GET,PUT,POST,DELTE methods
+		getAllEmployees() : Observable<Employee[]>{
+    			return this.http.get<Employee[]>('http://localhost:8181/employee/all');
+ 		 }
+local variable(syntax)
+variable name:variable class
+ex: bookName:Book
+-------------------------------------------------------------------------------------------------
