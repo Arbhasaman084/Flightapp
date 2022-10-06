@@ -1,0 +1,45 @@
+.list_body{
+    border: solid 3px black;
+    padding: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+}
+form{
+    border: solid 2px green;
+    padding: 10px;
+}
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+.list_body1{
+    border: solid 3px black;
+    padding: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 10px;
+}
+input{
+    margin-top: 3px;
+}
+
+tr,th,td,table{
+    border: solid 2px black;
+}
+.tab{
+    margin-left: 200px;
+    margin-right: 200px; 
+}
+h3{
+    margin-left: 200px;
+    margin-top: 30px;
+}
+.home-button{
+    border: 0px;
+    margin-top: 20px;
+    margin-left: 1000px;
+}

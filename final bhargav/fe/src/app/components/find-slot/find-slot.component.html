@@ -1,0 +1,76 @@
+<h3>Find Slot And Book Appointment</h3>
+<div class="list_body">
+    <form #doctorform="ngForm" >
+
+        <label>Patient Name:</label>
+        <input type="text" name="patientname" ngModel #patientname="ngModel" required
+        pattern="[a-zA-Z ]+">
+        <span *ngIf="patientname.invalid && patientname.touched">
+            <small> Name is invalid</small>
+          </span><br />
+
+        <label>Appointment Date</label>
+        <input type="date" name="appointmentDate" ngModel #appointmentDate="ngModel" 
+        (change)="checkDate(doctorform)">
+        <span *ngIf="!status1 && appointmentDate.touched">
+            <small> Date is invalid</small>
+        </span><br />
+
+        <label>session & slot: </label>
+        <select ngModel #session="ngModel" name="session" (change)="filterDoctors(doctorform)">&nbsp;
+        <option value="morning">morning</option>&nbsp;
+        <option value="evening">evening</option>&nbsp;
+        </select>
+
+        <select ngModel #slot="ngModel" name="slot" (change)="filterDoctors(doctorform)">&nbsp;
+        <option value="free">free</option>&nbsp;
+        <option value="booked">booked</option>
+        </select> <br />
+    </form>
+</div>
+<div class="list_body1">
+    <form #doctorlistform="ngForm" >
+        <label>speciality :</label>
+        <select ngModel #speciality="ngModel" name="speciality" (change)="getconsults(doctorlistform)">
+            <option *ngFor="let d of specialityArr" value="{{d.speciality}}">{{d.speciality}}</option>
+        </select>
+
+        <label>consultants :</label>
+        <select ngModel #consultants="ngModel" name="consultants">
+            <option *ngFor="let s of consultsArr" value="{{s.consultants}}">Dr.{{s.consultants}}</option>
+        </select>&nbsp;
+
+        <button (click)="searchform(doctorlistform)">Search</button>&nbsp;
+        <button (click)="clearform(doctorlistform)">Clear</button>
+
+    </form>
+</div> <br />
+
+
+<div class="tab">
+    <table style="width:100%">
+        <tr>
+          <th>consultants</th>
+          <th>speciality</th>
+          <th>timing</th>
+          <th>Status</th>
+        </tr>
+        <tr *ngFor="let s of searchlist">
+          <td>{{s.consultants}}</td>
+          <td>{{s.speciality}}</td>
+          <td>{{s.timing}}</td>
+          <td>
+            <button 
+            (click)="enableDisableRule()" 
+            [ngClass]="{'green' : toggle, 'red': !toggle}">
+            {{status}}
+            </button>
+          </td>
+
+        </tr>
+      </table>
+</div>
+
+<div class="home-button">
+    <button (click)="gotoHome()">Home</button>
+</div>
